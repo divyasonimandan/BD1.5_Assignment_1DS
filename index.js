@@ -19,13 +19,22 @@ function getTotalCartPrice(item1Price, item2Price, item3Price) {
   return totalCartPrice = item1Price + item2Price + item3Price;
 }
 
-app.get('/cart-total', (req, res) => {
+app.get('/cart-total-old', (req, res) => {
   let item1Price = parseFloat(req.query.item1Price);
   let item2Price = parseFloat(req.query.item2Price);
   let item3Price = parseFloat(req.query.item3Price);
 
   res.send(getTotalCartPrice(item1Price, item2Price, item3Price).toString())
 })
+
+
+app.get('/cart-total', (req, res) => {
+  let newItemPrice = parseFloat(req.query.newItemPrice);
+  let cartTotal = parseFloat(req.query.cartTotal);
+
+  res.send((cartTotal + newItemPrice).toString())
+})
+
 
 // Endpoint 2 : Apply a discount based on membership status.
 
